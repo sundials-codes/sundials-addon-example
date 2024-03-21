@@ -1,11 +1,20 @@
-cmake_minimum_required (VERSION 3.10)
-project (test-an-addon)
+# ---------------------------------------------------------------
+# SUNDIALS Copyright Start
+# Copyright (c) 2002-2024, Lawrence Livermore National Security
+# and Southern Methodist University.
+# All rights reserved.
+#
+# See the top-level LICENSE and NOTICE files for details.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+# SUNDIALS Copyright End
+# ---------------------------------------------------------------
 
-# add_library(my_sundials_nvector myNVector.c)
-# target_link_libraries(my_sundials_nvector PUBLIC sundials_core m)
+cmake_minimum_required (VERSION 3.18)
+project (example-sundials-addon)
 
-# Create the sundials_nvecserial library
-sundials_add_library(my_sundials_nvector
+# Create mynvector library
+sundials_add_library(sundials_external_mynvector
   SOURCES
     myNVector.c
   HEADERS
@@ -15,5 +24,5 @@ sundials_add_library(my_sundials_nvector
   LINK_LIBRARIES
     PUBLIC sundials_core
   OUTPUT_NAME
-    my_sundials_nvector
+    sundials_external_mynvector
 )
