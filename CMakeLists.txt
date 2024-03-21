@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.10)
-project (SUNDIALS-Sandbox)
+project (test-an-addon)
 
-find_package(SUNDIALS REQUIRED)
+# find_package(SUNDIALS REQUIRED)
 
 # To add an executable:
 # * use the "add_executable" command, that lists the executable
@@ -22,6 +22,6 @@ add_executable(testMyNVector
   testMyNVector.c
   myNVector.c)
 target_link_libraries(testMyNVector PUBLIC
-  SUNDIALS::core
+  sundials_core
   m)
 
