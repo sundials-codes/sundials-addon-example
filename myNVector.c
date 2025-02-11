@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sundials/sundials_core.h>
-#include "sundials/sundials_errors.h"
+#include <sundials/sundials_errors.h>
 
 #define ZERO   SUN_RCONST(0.0)
 #define HALF   SUN_RCONST(0.5)
@@ -188,8 +188,7 @@ N_Vector N_VNew_Mine(sunindextype length, SUNContext sunctx)
  * Function to create a serial N_Vector with user data component
  */
 
-N_Vector N_VMake_Mine(sunindextype length, sunrealtype* v_data,
-                        SUNContext sunctx)
+N_Vector N_VMake_Mine(sunindextype length, sunrealtype* v_data, SUNContext sunctx)
 {
   N_Vector v;
 
@@ -218,10 +217,7 @@ sunindextype N_VGetLength_Mine(N_Vector v) { return MYNV_LENGTH(v); }
  * Function to print the a serial vector to stdout
  */
 
-void N_VPrint_Mine(N_Vector x)
-{
-  N_VPrintFile_Mine(x, stdout);
-}
+void N_VPrint_Mine(N_Vector x) { N_VPrintFile_Mine(x, stdout); }
 
 /* ----------------------------------------------------------------------------
  * Function to print the a serial vector to outfile
@@ -623,7 +619,7 @@ sunrealtype N_VMaxNorm_Mine(N_Vector x)
 sunrealtype N_VWrmsNorm_Mine(N_Vector x, N_Vector w)
 {
   sunrealtype norm = N_VWSqrSumLocal_Mine(x, w);
-  norm = SUNRsqrt(norm / MYNV_LENGTH(x));
+  norm             = SUNRsqrt(norm / MYNV_LENGTH(x));
   return norm;
 }
 
@@ -651,7 +647,7 @@ sunrealtype N_VWSqrSumLocal_Mine(N_Vector x, N_Vector w)
 sunrealtype N_VWrmsNormMask_Mine(N_Vector x, N_Vector w, N_Vector id)
 {
   sunrealtype norm = N_VWSqrSumMaskLocal_Mine(x, w, id);
-  norm = SUNRsqrt(norm / MYNV_LENGTH(x));
+  norm             = SUNRsqrt(norm / MYNV_LENGTH(x));
   return norm;
 }
 
@@ -849,7 +845,6 @@ sunrealtype N_VMinQuotient_Mine(N_Vector num, N_Vector denom)
 SUNErrCode N_VLinearCombination_Mine(int nvec, sunrealtype* c, N_Vector* X,
                                      N_Vector z)
 {
-
   int i;
   sunindextype j, N;
   sunrealtype* zd = NULL;
@@ -1266,9 +1261,9 @@ SUNErrCode N_VWrmsNormMaskVectorArray_Mine(int nvec, N_Vector* X, N_Vector* W,
   return SUN_SUCCESS;
 }
 
-SUNErrCode N_VScaleAddMultiVectorArray_Mine(int nvec, int nsum,
-                                            sunrealtype* a, N_Vector* X,
-                                            N_Vector** Y, N_Vector** Z)
+SUNErrCode N_VScaleAddMultiVectorArray_Mine(int nvec, int nsum, sunrealtype* a,
+                                            N_Vector* X, N_Vector** Y,
+                                            N_Vector** Z)
 {
   int i, j;
   sunindextype k, N;
@@ -1752,8 +1747,7 @@ static void VSumVectorArray_Mine(int nvec, N_Vector* X, N_Vector* Y, N_Vector* Z
   }
 }
 
-static void VDiffVectorArray_Mine(int nvec, N_Vector* X, N_Vector* Y,
-                                  N_Vector* Z)
+static void VDiffVectorArray_Mine(int nvec, N_Vector* X, N_Vector* Y, N_Vector* Z)
 {
   int i;
   sunindextype j, N;
@@ -1913,8 +1907,7 @@ SUNErrCode N_VEnableFusedOps_Mine(N_Vector v, sunbooleantype tf)
     v->ops->nvwrmsnormvectorarray      = N_VWrmsNormVectorArray_Mine;
     v->ops->nvwrmsnormmaskvectorarray  = N_VWrmsNormMaskVectorArray_Mine;
     v->ops->nvscaleaddmultivectorarray = N_VScaleAddMultiVectorArray_Mine;
-    v->ops->nvlinearcombinationvectorarray =
-      N_VLinearCombinationVectorArray_Mine;
+    v->ops->nvlinearcombinationvectorarray = N_VLinearCombinationVectorArray_Mine;
     /* enable single buffer reduction operations */
     v->ops->nvdotprodmultilocal = N_VDotProdMulti_Mine;
   }
@@ -1985,8 +1978,7 @@ SUNErrCode N_VEnableWrmsNormVectorArray_Mine(N_Vector v, sunbooleantype tf)
 
 SUNErrCode N_VEnableWrmsNormMaskVectorArray_Mine(N_Vector v, sunbooleantype tf)
 {
-  v->ops->nvwrmsnormmaskvectorarray = tf ? N_VWrmsNormMaskVectorArray_Mine
-                                         : NULL;
+  v->ops->nvwrmsnormmaskvectorarray = tf ? N_VWrmsNormMaskVectorArray_Mine : NULL;
   return SUN_SUCCESS;
 }
 
