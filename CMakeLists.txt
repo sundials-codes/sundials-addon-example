@@ -10,19 +10,14 @@
 # SUNDIALS Copyright End
 # ---------------------------------------------------------------
 
-cmake_minimum_required (VERSION 3.18)
-project (example-sundials-addon)
+cmake_minimum_required(VERSION 3.18)
+project(example-sundials-addon)
 
 # Create mynvector library
-sundials_add_library(sundials_external_mynvector
-  SOURCES
-    myNVector.c
-  HEADERS
-    myNVector.h
-  INCLUDE_SUBDIR
-    nvector
-  LINK_LIBRARIES
-    PUBLIC sundials_core
-  OUTPUT_NAME
-    sundials_external_mynvector
-)
+sundials_add_library(
+  sundials_external_mynvector
+  SOURCES myNVector.c
+  HEADERS myNVector.h
+  INCLUDE_SUBDIR nvector
+  LINK_LIBRARIES PUBLIC sundials_core
+  OUTPUT_NAME sundials_external_mynvector)
