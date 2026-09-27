@@ -100,9 +100,6 @@ SUNDIALS_EXPORT
 void N_VDestroy_Mine(N_Vector v);
 
 SUNDIALS_EXPORT
-void N_VSpace_Mine(N_Vector v, sunindextype* lrw, sunindextype* liw);
-
-SUNDIALS_EXPORT
 sunrealtype* N_VGetArrayPointer_Mine(N_Vector v);
 
 SUNDIALS_EXPORT

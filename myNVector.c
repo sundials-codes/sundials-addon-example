@@ -89,7 +89,6 @@ N_Vector N_VNewEmpty_Mine(sunindextype length, SUNContext sunctx)
   v->ops->nvclone           = N_VClone_Mine;
   v->ops->nvcloneempty      = N_VCloneEmpty_Mine;
   v->ops->nvdestroy         = N_VDestroy_Mine;
-  v->ops->nvspace           = N_VSpace_Mine;
   v->ops->nvgetarraypointer = N_VGetArrayPointer_Mine;
   v->ops->nvsetarraypointer = N_VSetArrayPointer_Mine;
   v->ops->nvgetlength       = N_VGetLength_Mine;
@@ -338,17 +337,6 @@ void N_VDestroy_Mine(N_Vector v)
   }
   free(v);
   v = NULL;
-
-  return;
-}
-
-void N_VSpace_Mine(N_Vector v, sunindextype* lrw, sunindextype* liw)
-{
-  if (lrw == NULL) { return; }
-  if (liw == NULL) { return; }
-
-  *lrw = MYNV_LENGTH(v);
-  *liw = 1;
 
   return;
 }
