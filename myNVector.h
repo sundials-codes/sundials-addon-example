@@ -18,8 +18,8 @@
  * (note that this template just implements the serial N_Vector).
  * -----------------------------------------------------------------*/
 
-#ifndef _MY_NVECTOR_H
-#define _MY_NVECTOR_H
+#ifndef MY_NVECTOR_H_
+#define MY_NVECTOR_H_
 
 #include <stdio.h>
 #include <sundials/sundials_nvector.h>
@@ -34,14 +34,14 @@ extern "C" {
  * -----------------------------------------------------------------
  */
 
-struct _My_NVectorContent
+struct My_NVectorContent_
 {
   sunindextype length;     /* vector length       */
   sunbooleantype own_data; /* data ownership flag */
   sunrealtype* data;       /* data array          */
 };
 
-typedef struct _My_NVectorContent* My_NVectorContent;
+typedef struct My_NVectorContent_* My_NVectorContent;
 
 /*
  * -----------------------------------------------------------------
